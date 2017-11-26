@@ -11,21 +11,14 @@
 
     using WebStore.Contructs;
     using WebStore.Domain.Entities;
+    using WebStore.Services.Repositories;
 
     public class NinjectRegistrations : NinjectModule 
 
     {
         public override void Load()
         {
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns(
-                new List<Product>
-                    {
-                        new Product { Name = "FootЬall", Price = 25 },
-                        new Product { Name = "Surfboard", Price = 179 },
-                        new Product { Name = "Running shoes", Price = 95 }
-                    });
-            this.Kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            this.Kernel.Bind<IProductRepository>().To<ProductRepository>();
         }
     }
 }

@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,9 +48,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\WebStore.Contructs\WebStore.Contructs.csproj">
+      <Project>{4cfb87de-3ae3-4ef1-aa51-241dbfb51abe}</Project>
+      <Name>WebStore.Contructs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebStore.DAL\WebStore.DAL.csproj">
+      <Project>{5DE4B403-2A10-4BCC-A07E-A4BECDA134B0}</Project>
+      <Name>WebStore.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebStore.Models\WebStore.Domain.csproj">
+      <Project>{6c2aabbf-e9ab-4513-b887-41bee96d3b5b}</Project>
+      <Name>WebStore.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
