@@ -8,19 +8,40 @@
 
     using WebStore.Contructs;
     using WebStore.Domain.Entities;
+    using WebStore.WebUI.Models;
 
     public class ProductController : Controller
     {
         private readonly IProductRepository repository;
+
+        public int PageSize = 4;
 
         public ProductController(IProductRepository productRepository)
         {
             this.repository = productRepository;
         }
 
-        public ViewResult List()
+        public ViewResult List(int page = 1)
         {
-            return this.View(this.repository.Products);
+            ProductListViewModel model = new ProductListViewModel
+                                             {
+                                                 Products =
+                                                     this.repository.Products
+                                                         .OrderBy(p => p.ProductId)
+                                                         .Skip((page - 1) * this.PageSize)
+                                                         .Take(this.PageSize),
+                                                 PagingInfo =
+                                                     new PagingInfo
+                                                         {
+                                                             CurrentPage = page,
+                                                             ItemsPerPage =
+                                                                 this.PageSize,
+                                                             TotalItems =
+                                                                 this.repository
+                                                                     .Products.Count()
+                                                         }
+                                             };
+            return this.View(model);
         }
     }
 }
