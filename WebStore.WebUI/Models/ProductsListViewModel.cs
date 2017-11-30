@@ -7,7 +7,7 @@
 
     using WebStore.Domain.Entities;
 
-    public class ProductListViewModel
+    public class ProductsListViewModel
     {
         public IEnumerable<Product> Products { get; set; }
 
