@@ -19,11 +19,12 @@
             this.repository = repository;
         }
         // GET: Nav
-        public PartialViewResult Menu(string category = null)
+        public PartialViewResult Menu(string category = null, bool horizontalLayout = false)
         {
             this.ViewBag.SelectedCategory = category;
             IEnumerable<string> categories = this.repository.Products.Select(x => x.Category).Distinct().OrderBy(x => x);
-            return this.PartialView(categories);
+            string viewName = horizontalLayout ? "MenuHorizontal" : "Menu";
+            return this.PartialView(viewName, categories);
         }
     }
 }
