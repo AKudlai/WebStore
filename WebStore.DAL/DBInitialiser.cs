@@ -9,7 +9,7 @@
 
     using WebStore.Domain.Entities;
 
-    public class DBInitialiser : DropCreateDatabaseAlways<WebStoreContext>
+    public class DBInitialiser : DropCreateDatabaseIfModelChanges<WebStoreContext>
 
     {
         protected override void Seed(WebStoreContext context)
