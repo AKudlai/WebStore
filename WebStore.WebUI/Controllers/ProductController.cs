@@ -1,9 +1,11 @@
 ﻿namespace WebStore.WebUI.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
 
     using WebStore.Contructs;
+    using WebStore.Domain.Entities;
     using WebStore.WebUI.Models;
 
     public class ProductController : Controller
@@ -48,6 +50,20 @@
                                                   CurentCategory = category
                                               };
             return this.View(model);
+        }
+
+        public FileContentResult GetImage(Guid productId)
+        {
+            Product prod = this.repository.Products
+                .FirstOrDefault(p => p.ProductId == productId);
+            if (prod != null)
+            {
+                return this.File(prod.ImageData, prod.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201712071216117_Annotations.Designer.cs">
       <DependentUpon>201712071216117_Annotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712101726452_AddImage.cs" />
+    <Compile Include="Migrations\201712101726452_AddImage.Designer.cs">
+      <DependentUpon>201712101726452_AddImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebStoreContext.cs" />
@@ -76,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712071216117_Annotations.resx">
       <DependentUpon>201712071216117_Annotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712101726452_AddImage.resx">
+      <DependentUpon>201712101726452_AddImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
