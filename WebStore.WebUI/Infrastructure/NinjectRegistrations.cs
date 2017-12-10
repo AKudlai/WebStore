@@ -19,6 +19,7 @@
         public override void Load()
         {
             this.Kernel.Bind<IProductRepository>().To<ProductRepository>();
+
         }
     }
 }

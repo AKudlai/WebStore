@@ -2,11 +2,13 @@
 {
     using System;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
 
     using WebStore.Contructs;
     using WebStore.Domain.Entities;
 
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IProductRepository repository;
@@ -29,10 +31,16 @@
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product)
-        {
+        public ActionResult Edit(Product product, HttpPostedFileBase image = null)
+            {
             if (this.ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    product.ImageMimeType = image.ContentType;
+                    product.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(product.ImageData, 0, image.ContentLength);
+                }
                 this.repository.SaveProduct(product);
                 this.TempData["message"] = $"{product.Name} has been saved";
                 return this.RedirectToAction("Index");

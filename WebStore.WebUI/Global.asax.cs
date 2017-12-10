@@ -16,7 +16,9 @@
     using WebStore.Domain.Entities;
     using WebStore.Services;
     using WebStore.WebUI.Infrastructure;
+    using WebStore.WebUI.Infrastructure.Abstract;
     using WebStore.WebUI.Infrastructure.Binders;
+    using WebStore.WebUI.Infrastructure.Concrete;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -39,6 +41,7 @@
                                                           "Email.WriteAsFile"] ?? "false")
                                               };
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }
